@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace __Utils._ClassExtensions.UnityExtensions {
 	public static class VectorExtensions {
@@ -59,7 +61,7 @@ namespace __Utils._ClassExtensions.UnityExtensions {
 
 			return points;
 		}
-		
+
 		public static int Compare(this Vector2 self, Vector2 other) {
 			if (self.x > other.x && self.y > other.y) {
 				return 1;
@@ -70,6 +72,44 @@ namespace __Utils._ClassExtensions.UnityExtensions {
 			}
 
 			return 0;
+		}
+
+		public static Vector3 GetOutsideBoundsVector(this Vector3 center, Vector3 size, Vector3 point) {
+			float absSizeX = Math.Abs(size.x);
+			float absSizeY = Math.Abs(size.y);
+			float absSizeZ = Math.Abs(size.z);
+
+			float leftOffsetLimit = center.x - absSizeX;
+			float rightOffsetLimit = center.x + absSizeX;
+			float upOffsetLimit = center.y + absSizeY;
+			float downOffsetLimit = center.y - absSizeY;
+			float forwardOffsetLimit = center.z + absSizeZ;
+			float backOffsetLimit = center.z - absSizeZ;
+
+			Vector3 result = Vector3.zero;
+
+			if (point.x < leftOffsetLimit) {
+				result.x = point.x - leftOffsetLimit;
+			}
+			else if (point.x > rightOffsetLimit) {
+				result.x = point.x - rightOffsetLimit;
+			}
+			
+			if (point.y > upOffsetLimit) {
+				result.y = point.y - upOffsetLimit;
+			}
+			else if (point.y < downOffsetLimit) {
+				result.y = point.y - downOffsetLimit;
+			}
+			
+			if (point.z > forwardOffsetLimit) {
+				result.z = point.z - forwardOffsetLimit;
+			}
+			else if (point.z < backOffsetLimit) {
+				result.z = point.z - backOffsetLimit;
+			}
+
+			return result;
 		}
 	}
 }
