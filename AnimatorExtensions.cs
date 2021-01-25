@@ -1,10 +1,39 @@
 ﻿using System;
 using System.Linq;
-using __Utils._ClassExtensions.LanguageExtensions;
+using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
+using Plugins.ClassExtensions.CsharpExtensions;
 using UnityEngine;
 
-namespace __Utils._ClassExtensions.UnityExtensions {
+namespace Plugins.ClassExtensions.UnityExtensions {
 	public static class AnimatorExtensions {
+		public static async Task WaitUntilGivenStateEnd(
+			this Animator animator, string stateName, int layerIndex = 0
+		) {
+			AnimatorStateInfo currentStateInfo;
+			do {
+				await UniTask.Yield();
+
+				if (animator) {
+					currentStateInfo = animator.GetCurrentAnimatorStateInfo(layerIndex);
+				}
+				else {
+					return;
+				}
+			} while (animator.IsInTransition(layerIndex) || !currentStateInfo.IsName(stateName));
+
+			do {
+				await UniTask.Yield();
+
+				if (animator) {
+					currentStateInfo = animator.GetCurrentAnimatorStateInfo(layerIndex);
+				}
+				else {
+					return;
+				}
+			} while (currentStateInfo.IsName(stateName) && currentStateInfo.normalizedTime < 1);
+		}
+
 		public static bool GetIsMainLayerOrHasWeight(this Animator animator, int layerIndex) {
 			return layerIndex == 0 || animator.GetLayerWeight(layerIndex) > 0;
 		}
@@ -23,10 +52,6 @@ namespace __Utils._ClassExtensions.UnityExtensions {
 
 		public static float GetCurrentAnimationLength(this Animator animator, int layer = 0) {
 			return animator.GetCurrentAnimatorStateInfo(layer).length;
-		}
-
-		public static float GetNextAnimationLength(this Animator animator, int layer = 0) {
-			return animator.GetNextAnimatorStateInfo(layer).length;
 		}
 
 		public static float GetCurrentAnimationTime(this Animator animator, int layer = 0) {
@@ -53,7 +78,6 @@ namespace __Utils._ClassExtensions.UnityExtensions {
 
 			return false;
 		}
-		
 
 		public static float GetAnimationClipLength(this RuntimeAnimatorController animator, string stateName) {
 			return (

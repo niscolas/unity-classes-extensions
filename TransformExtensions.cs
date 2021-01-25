@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace __Utils._ClassExtensions.UnityExtensions {
+namespace Plugins.ClassExtensions.UnityExtensions {
 	public static class TransformExtensions {
 		public static Vector3 GetAppliedRotation(this Vector3 direction, Transform referential) {
 			Vector3 referentialForward = referential.forward;

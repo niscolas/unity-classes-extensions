@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace __Utils._ClassExtensions.UnityExtensions {
+namespace Plugins.ClassExtensions.UnityExtensions {
 	public static class MonoBehaviourExtensions {
 		public static void DoAfterFrames(this MonoBehaviour monoBehaviour, Action action, int frames = 1) {
 			monoBehaviour.StartCoroutine(DoAfterFramesRoutine(action, frames));

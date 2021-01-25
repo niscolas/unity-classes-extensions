@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace __Utils._ClassExtensions.UnityExtensions {
+namespace Plugins.ClassExtensions.UnityExtensions {
 	public static class CameraExtensions {
 		public static Vector3 GetPointerPosition(this UnityEngine.Camera camera) {
 			Ray ray = camera.ScreenPointToRay(Input.mousePosition);

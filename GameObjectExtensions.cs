@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using __Utils._ClassExtensions.LanguageExtensions;
+using Plugins.ClassExtensions.CsharpExtensions;
 using UnityEngine;
 
-namespace __Utils._ClassExtensions.UnityExtensions {
+namespace Plugins.ClassExtensions.UnityExtensions {
 	public static class GameObjectExtensions {
 		public static bool GetIsPrefab(this GameObject gameObject) {
 			return gameObject.scene.rootCount == 0;
