@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Plugins.ClassExtensions.CsharpExtensions;
 using UnityEngine;
 
 namespace Plugins.ClassExtensions.UnityExtensions {
@@ -47,7 +46,7 @@ namespace Plugins.ClassExtensions.UnityExtensions {
 			where TAdd : Component, TTest {
 			TTest component = gameObject.GetSafeComponent<TTest>();
 
-			if (component.IsReallyNull()) {
+			if (component == null || component.Equals(null)) {
 				component = gameObject.AddComponent<TAdd>();
 			}
 

@@ -17,5 +17,9 @@ namespace Plugins.ClassExtensions.UnityExtensions {
 		public static float Random(this Vector2 self) {
 			return UnityEngine.Random.Range(self.x, self.y);
 		}
+		
+		public static float DistanceFrom(this Vector2 baseVector, Vector2 target) {
+			return (baseVector - target).sqrMagnitude;
+		}
 	}
 }
