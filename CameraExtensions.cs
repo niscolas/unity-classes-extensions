@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
 
-namespace Plugins.ClassExtensions.UnityExtensions {
-	public static class CameraExtensions {
-		public static Vector3 GetPointerPosition(this UnityEngine.Camera camera) {
+namespace Plugins.ClassExtensions.UnityExtensions
+{
+	public static class CameraExtensions
+	{
+		public static Vector3 GetPointerPosition(this Camera camera)
+		{
 			Ray ray = camera.ScreenPointToRay(Input.mousePosition);
 
 			Vector3 result = Physics.Raycast(ray, out RaycastHit hit) ? hit.point : Vector3.zero;
@@ -10,7 +13,8 @@ namespace Plugins.ClassExtensions.UnityExtensions {
 			return result;
 		}
 
-		public static bool GetIsWorldPointVisible(this UnityEngine.Camera camera, Vector3 position) {
+		public static bool GetIsWorldPointVisible(this Camera camera, Vector3 position)
+		{
 			Vector3 viewportPoint = camera.WorldToViewportPoint(position);
 
 			return
@@ -19,9 +23,10 @@ namespace Plugins.ClassExtensions.UnityExtensions {
 				viewportPoint.z > 0;
 		}
 
-		public static Vector3 GetWorldPositionWithRaycast(this UnityEngine.Camera camera, Vector3 viewportPos) {
+		public static Vector3 GetWorldPositionWithRaycast(this Camera camera, Vector3 viewportPos)
+		{
 			Ray ray = camera.ViewportPointToRay(viewportPos);
-			
+
 			return Physics.Raycast(ray, out RaycastHit hit) ? hit.point : Vector3.zero;
 		}
 	}
