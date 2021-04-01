@@ -2,7 +2,7 @@
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace Plugins.ClassExtensions.UnityExtensions
+namespace UnityExtensions
 {
 	public static class TransformExtensions
 	{

@@ -2,7 +2,7 @@
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Plugins.ClassExtensions.UnityExtensions
+namespace UnityExtensions
 {
 	public static class Vector3Extensions
 	{

@@ -1,48 +1,12 @@
 ﻿using System;
 using System.Linq;
-using System.Threading.Tasks;
-using Cysharp.Threading.Tasks;
-using Plugins.CsharpExtensions;
+using CsharpExtensions;
 using UnityEngine;
 
-namespace Plugins.ClassExtensions.UnityExtensions
+namespace UnityExtensions
 {
 	public static class AnimatorExtensions
 	{
-		public static async Task WaitUntilGivenStateEnd(
-			this Animator animator, string stateName, int layerIndex = 0
-		)
-		{
-			AnimatorStateInfo currentStateInfo;
-			do
-			{
-				await UniTask.Yield();
-
-				if (animator)
-				{
-					currentStateInfo = animator.GetCurrentAnimatorStateInfo(layerIndex);
-				}
-				else
-				{
-					return;
-				}
-			} while (animator.IsInTransition(layerIndex) || !currentStateInfo.IsName(stateName));
-
-			do
-			{
-				await UniTask.Yield();
-
-				if (animator)
-				{
-					currentStateInfo = animator.GetCurrentAnimatorStateInfo(layerIndex);
-				}
-				else
-				{
-					return;
-				}
-			} while (currentStateInfo.IsName(stateName) && currentStateInfo.normalizedTime < 1);
-		}
-
 		public static bool GetIsMainLayerOrHasWeight(this Animator animator, int layerIndex)
 		{
 			return layerIndex == 0 || animator.GetLayerWeight(layerIndex) > 0;

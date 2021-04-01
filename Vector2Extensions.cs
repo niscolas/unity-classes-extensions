@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Plugins.ClassExtensions.UnityExtensions
+namespace UnityExtensions
 {
 	public static class Vector2Extensions
 	{
@@ -23,8 +23,9 @@ namespace Plugins.ClassExtensions.UnityExtensions
 		{
 			return UnityEngine.Random.Range(self.x, self.y);
 		}
-		
-		public static float DistanceFrom(this Vector2 baseVector, Vector2 target) {
+
+		public static float DistanceFrom(this Vector2 baseVector, Vector2 target)
+		{
 			return (baseVector - target).sqrMagnitude;
 		}
 	}
