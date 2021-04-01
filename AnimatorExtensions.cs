@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
-using Plugins.ClassExtensions.CsharpExtensions;
+using Plugins.CsharpExtensions;
 using UnityEngine;
 
 namespace Plugins.ClassExtensions.UnityExtensions

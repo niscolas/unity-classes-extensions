@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Plugins.ClassExtensions.UnityExtensions
 {
@@ -70,6 +72,14 @@ namespace Plugins.ClassExtensions.UnityExtensions
 		{
 			Vector3 targetDir = targetPos - transform.position;
 			return Vector3.Angle(targetDir, transform.forward);
+		}
+
+		public static void ForEachChildren(this Transform transform, Action<GameObject> action)
+		{
+			foreach (Transform child in transform)
+			{
+				action?.Invoke(child.gameObject);
+			}
 		}
 	}
 }
