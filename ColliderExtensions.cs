@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Plugins
+namespace UnityExtensions
 {
 	public static class ColliderExtensions
 	{

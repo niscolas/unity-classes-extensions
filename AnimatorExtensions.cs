@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using CsharpExtensions;
 using UnityEngine;
 
 namespace UnityExtensions

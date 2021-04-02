@@ -1,6 +1,6 @@
 ﻿using UnityEngine.Animations;
 
-namespace Plugins.UnityClassesExtensions
+namespace UnityExtensions
 {
 	public static class ParentConstraintExtensions
 	{

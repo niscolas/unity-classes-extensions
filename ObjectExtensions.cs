@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace Plugins.UnityClassesExtensions
+namespace UnityExtensions
 {
 	public static class ObjectExtensions
 	{
