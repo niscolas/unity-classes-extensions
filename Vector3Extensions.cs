@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -6,9 +8,9 @@ namespace UnityExtensions
 {
 	public static class Vector3Extensions
 	{
-		public static float DistanceFrom(this Vector3 vector, Vector3 target)
+		public static bool IsNearTo(this Vector3 origin, Vector3 target, float nearDistance)
 		{
-			return (vector - target).sqrMagnitude;
+			return (origin - target).sqrMagnitude <= nearDistance * nearDistance;
 		}
 
 		public static Vector3[] GetRandomPointsInRadius(this Vector3 origin, float radius, int numPoints,
@@ -116,6 +118,24 @@ namespace UnityExtensions
 			}
 
 			return result;
+		}
+
+		public static Vector3 CalculateCenter(this IEnumerable<Vector3> vectors)
+		{
+			Vector3[] vectorArray = vectors.ToArray();
+
+			Vector3 sum = Vector3.zero;
+			if (vectorArray.IsNullOrEmpty())
+			{
+				return sum;
+			}
+
+			foreach (Vector3 vec in vectorArray)
+			{
+				sum += vec;
+			}
+
+			return sum / vectorArray.Length;
 		}
 	}
 }
