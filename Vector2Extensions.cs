@@ -28,5 +28,16 @@ namespace UnityExtensions
 		{
 			return (baseVector - target).sqrMagnitude;
 		}
+
+		public static Vector3 PointerAs3dPosition(this Vector2 pointerPosition, Camera camera = null)
+		{
+			if (!camera)
+			{
+				camera = Camera.main;
+			}
+
+			Vector3 worldPoint = camera.ScreenToWorldPoint(pointerPosition);
+			return worldPoint;
+		}
 	}
 }

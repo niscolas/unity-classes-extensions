@@ -6,6 +6,14 @@ namespace UnityExtensions
 {
 	public static class MonoBehaviourExtensions
 	{
+		public static IEnumerator WaitFramesCo(this MonoBehaviour monoBehaviour, int frameCount = 1)
+		{
+			for (int i = 0; i < frameCount; i++)
+			{
+				yield return null;
+			}
+		}
+
 		public static void DoAfterFrames(this MonoBehaviour monoBehaviour, Action action, int frames = 1)
 		{
 			monoBehaviour.StartCoroutine(DoAfterFramesRoutine(action, frames));

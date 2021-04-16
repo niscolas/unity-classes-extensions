@@ -30,23 +30,22 @@ namespace UnityExtensions
 			}
 		}
 
-		public static bool HasNullElements<T>(this IEnumerable<T> enumerable)
+		public static bool IsValid<T>(this IEnumerable<T> enumerable)
 		{
+			if (enumerable == null)
+			{
+				return false;
+			}
+			
 			T[] array = enumerable.ToArray();
-			if (array.IsNullOrEmpty())
+
+			if (array.Length == 0)
 			{
-				return true;
+				return false;
 			}
 
-			foreach (T element in array)
-			{
-				if (element == null)
-				{
-					return true;
-				}
-			}
-
-			return false;
+			bool isValid = array.All(element => element != null);
+			return isValid;
 		}
 	}
 }

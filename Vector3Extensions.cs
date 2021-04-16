@@ -137,5 +137,14 @@ namespace UnityExtensions
 
 			return sum / vectorArray.Length;
 		}
+
+		public static Vector3 Multiply(this Vector3 vector, Vector3 multiplier)
+		{
+			Vector3 multipliedVector = vector;
+			multipliedVector.x *= multiplier.x;
+			multipliedVector.y *= multiplier.y;
+			multipliedVector.z *= multiplier.z;
+			return multipliedVector;
+		}
 	}
 }
