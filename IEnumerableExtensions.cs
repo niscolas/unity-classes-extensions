@@ -17,6 +17,11 @@ namespace UnityExtensions
 			return enumerable.ElementAt(index);
 		}
 
+		public static bool IsNotNullOrEmpty<T>(this IEnumerable<T> enumerable)
+		{
+			return enumerable != null && enumerable.Any();
+		}
+
 		public static bool IsNullOrEmpty<T>(this IEnumerable<T> enumerable)
 		{
 			return enumerable == null || !enumerable.Any();
@@ -36,7 +41,7 @@ namespace UnityExtensions
 			{
 				return false;
 			}
-			
+
 			T[] array = enumerable.ToArray();
 
 			if (array.Length == 0)
@@ -46,6 +51,16 @@ namespace UnityExtensions
 
 			bool isValid = array.All(element => element != null);
 			return isValid;
+		}
+
+		public static T[] AsArray<T>(this IEnumerable<T> enumerable)
+		{
+			return enumerable as T[] ?? enumerable.ToArray();
+		}
+
+		public static List<T> AsList<T>(this IEnumerable<T> enumerable)
+		{
+			return enumerable as List<T> ?? enumerable.ToList();
 		}
 	}
 }
