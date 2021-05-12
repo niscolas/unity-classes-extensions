@@ -61,5 +61,12 @@ namespace UnityExtensions
 		{
 			return obj == null || obj.Equals(null);
 		}
+
+#if UNITY_EDITOR
+		public static bool IsPartOfPrefab(this Object unityObj)
+		{
+			return PrefabUtility.IsPartOfPrefabAsset(unityObj);
+		}
+#endif
 	}
 }

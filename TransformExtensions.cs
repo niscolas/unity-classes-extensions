@@ -62,9 +62,10 @@ namespace UnityExtensions
 
 		public static void DestroyChildren(this Transform transform)
 		{
-			foreach (Transform child in transform)
+			int childCount = transform.childCount;
+			for (int i = 0; i < childCount; i++)
 			{
-				Object.Destroy(child.gameObject);
+				Object.DestroyImmediate(transform.GetChild(0).gameObject);
 			}
 		}
 

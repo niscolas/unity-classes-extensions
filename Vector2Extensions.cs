@@ -39,5 +39,11 @@ namespace UnityExtensions
 			Vector3 worldPoint = camera.ScreenToWorldPoint(pointerPosition);
 			return worldPoint;
 		}
+
+		public static Vector2 RandomPointInRing(this Vector2 origin, float minRadius, float maxRadius)
+		{
+			Vector2 v = UnityEngine.Random.insideUnitCircle;
+			return origin + (v.normalized * minRadius + v * (maxRadius - minRadius));
+		}
 	}
 }
