@@ -18,7 +18,7 @@ namespace UnityExtensions
 		}
 #endif
 
-		public static void Create(this Object asset, string fullPath)
+		public static void Create(this Object asset, string fullPath, bool saveAssets = true)
 		{
 #if UNITY_EDITOR
 			string fullFolderPath = fullPath.SubstringUntilLastCharacter(DirectorySeparatorChar);
@@ -33,7 +33,10 @@ namespace UnityExtensions
 			}
 
 			AssetDatabase.CreateAsset(asset, fullPath);
-			AssetDatabase.SaveAssets();
+			if (saveAssets)
+			{
+				AssetDatabase.SaveAssets();
+			}
 #endif
 		}
 

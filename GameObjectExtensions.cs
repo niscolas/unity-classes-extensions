@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace UnityExtensions
 {
 	public static class GameObjectExtensions
 	{
-		public static bool GetIsPrefab(this GameObject gameObject)
+		public static bool IsPrefab(this GameObject gameObject)
 		{
 			return gameObject.scene.rootCount == 0;
 		}
@@ -18,12 +19,12 @@ namespace UnityExtensions
 
 		public static T GetOrAddComponent<T>(this GameObject gameObject) where T : Component
 		{
+			if (!gameObject) return default;
+
 			T component = gameObject.GetComponent<T>();
 
 			if (!component)
 			{
-				// Debug.Log("No " + typeof(T) + " on " + gameObject.name + " adding...", gameObject);
-
 				component = gameObject.AddComponent<T>();
 			}
 
@@ -140,6 +141,15 @@ namespace UnityExtensions
 					component.enabled = shouldEnable;
 				}
 			}
+		}
+
+		public static IEnumerable<T> GetComponents<T>(this IEnumerable<GameObject> gameObjects)
+		{
+			return gameObjects
+				.Select(
+					taggedChild => taggedChild.GetComponent<T>())
+				.Where(
+					component => !component.IsNull());
 		}
 	}
 }
