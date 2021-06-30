@@ -10,7 +10,7 @@ namespace UnityExtensions
 	{
 		public static bool IsNearTo(this Vector3 origin, Vector3 target, float nearDistance)
 		{
-			return (origin - target).sqrMagnitude <= nearDistance * nearDistance;
+			return Vector3.Distance(origin, target) <= nearDistance;
 		}
 
 		public static Vector3[] GetRandomPointsInRadius(this Vector3 origin, float radius, int numPoints,
