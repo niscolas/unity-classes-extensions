@@ -55,7 +55,7 @@ namespace UnityExtensions
 		{
 			TTest component = gameObject.GetSafeComponent<TTest>();
 
-			if (component.IsNull())
+			if (component.IsUnityNull())
 			{
 				component = gameObject.AddComponent<TAdd>();
 			}
@@ -65,7 +65,7 @@ namespace UnityExtensions
 
 		public static T IfNullGetComponent<T>(this GameObject gameObject, T test, bool searchChildren = false)
 		{
-			if (test.IsNull())
+			if (test.IsUnityNull())
 			{
 				if (searchChildren)
 				{
@@ -78,12 +78,22 @@ namespace UnityExtensions
 			return test;
 		}
 
+		public static T IfUnityNullGetOrAddComponent<T>(this GameObject gameObject, T component) where T : Component
+		{
+			if (component.IsUnityNull())
+			{
+				component = gameObject.GetOrAddComponent<T>();
+			}
+
+			return component;
+		}
+
 		public static TTest IfNullGetOrAddComponent<TTest, TAdd>(
 			this GameObject gameObject, TTest test, bool searchChildren = true
 		)
 			where TAdd : Component, TTest
 		{
-			if (!test.IsNull())
+			if (!test.IsUnityNull())
 			{
 				return test;
 			}
@@ -103,6 +113,16 @@ namespace UnityExtensions
 			}
 
 			return test;
+		}
+
+		public static T IfUnityNullTryGetComponent<T>(this GameObject gameObject, T component)
+		{
+			if (component.IsUnityNull())
+			{
+				gameObject.TryGetComponent(out component);
+			}
+
+			return component;
 		}
 
 		public static List<GameObject> FindChildrenWithTag(this Transform parent, string tag)
@@ -149,7 +169,7 @@ namespace UnityExtensions
 				.Select(
 					taggedChild => taggedChild.GetComponent<T>())
 				.Where(
-					component => !component.IsNull());
+					component => !component.IsUnityNull());
 		}
 	}
 }

@@ -60,7 +60,7 @@ namespace UnityExtensions
 #endif
 		}
 
-		public static bool IsNull(this object obj)
+		public static bool IsUnityNull(this object obj)
 		{
 			return obj == null || obj.Equals(null);
 		}
